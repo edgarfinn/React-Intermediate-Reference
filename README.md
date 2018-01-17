@@ -116,7 +116,7 @@ Using a colon within a path introduces a wild, allowing the value to vary depend
 <Route path="/posts/:id" component={PostsShow} />
 ```
 
-##### LODASH TIP:
+#### LODASH TIP:
 
 Converting arrays to Objects with lodash's ```_.mapKeys```
 
