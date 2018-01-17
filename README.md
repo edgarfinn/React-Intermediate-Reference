@@ -120,8 +120,9 @@ Using a colon within a path introduces a wild, allowing the value to vary depend
 
 Converting arrays to Objects with lodash's ```_.mapKeys```
 
-the ```_.mapKeys``` method takes an array of uniform arguments as the first argument, and a specified key as the second argument. The returned value is an object of the same uniform objects from the array, each referenced using the key passed as the second argument.
+The ```_.mapKeys``` method takes an array of uniform arguments as the first argument, and a specified key as the second argument. The returned value is an object of the same uniform objects from the array, each referenced using the key passed as the second argument.
 
+This can be really useful when handling arrays of data objects from an API ```get``` request.
 
 NOTE: The id key will need to be unique, otherwise former duplicates will be overwritten and deleted.
 
