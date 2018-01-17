@@ -36,7 +36,7 @@ For example:
     might return a specific post
 
 
-### Installation:
+## Installation:
 ```npm i react-router-dom```
 
 Then in the parent-most component / module that you want to handle routes:
@@ -105,4 +105,36 @@ The Route component takes at least two props:
 
 ```js
 <Route path="/home" component={HomePage} />
+```
+
+### Handling varying endpoints
+
+Using a colon within a path introduces a wild, allowing the value to vary depending on which specific instance of an endpoint you request (for example, a specific blog post, identified by its ```id```).
+
+
+```js
+<Route path="/posts/:id" component={PostsShow} />
+```
+
+### LODASH TIP:
+
+Converting arrays to Objects with _lodash.
+
+```js
+const posts = [
+  {id: 4, title: "Hi"},
+  {id: 36, title: "Hows it going?"},
+  {id: 25, title: "Bye"}
+]
+
+const state = _.mapKeys(posts, 'id')
+
+console.log(state)
+/*
+{
+  4: { id: 4, title: 'Hi' },
+  25: { id: 25, title: 'Bye' },
+  36: { id: 36, title: 'Hows it going?' }
+}
+*/
 ```
