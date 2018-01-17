@@ -67,8 +67,8 @@ class App extends Component {
         <h1 className="App-title">Welcome to React</h1>
         <BrowserRouter>
           <div>
-            <Route path="/hello" component={Hello}></Route>
-            <Route path="/goodbye" component={Goodbye}></Route>
+            <Route path="/hello" component={Hello} />
+            <Route path="/goodbye" component={Goodbye} />
           </div>
         </BrowserRouter>
       </div>
