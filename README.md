@@ -102,6 +102,7 @@ Route is used to configure different components to be rendered based on the URL 
 The Route component takes at least two props: ```path```, which determines which URL should trigger the rendering of that component, and ```component```, which determines the component to be rendered based on the path.
 
 ```js
+// for requests to /home, serve up the HomePage component
 <Route path="/home" component={HomePage} />
 ```
 
