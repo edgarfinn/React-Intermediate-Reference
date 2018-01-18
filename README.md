@@ -99,9 +99,7 @@ the ```{Route}``` object is a React component that can be rendered inside any ot
 
 Route is used to configure different components to be rendered based on the URL entered in the browser.
 
-The Route component takes at least two props:
-
-```path```, which determines which URL should trigger the rendering of that component, and ```component```, which determines the component to be rendered based on the path.
+The Route component takes at least two props: ```path```, which determines which URL should trigger the rendering of that component, and ```component```, which determines the component to be rendered based on the path.
 
 ```js
 <Route path="/home" component={HomePage} />
@@ -109,7 +107,7 @@ The Route component takes at least two props:
 
 ### Handling varying endpoints
 
-Using a colon within a path introduces a wild, allowing the value to vary depending on which specific instance of an endpoint you request (for example, a specific blog post, identified by its ```id```).
+Using a colon within a path introduces a variable wild-card, allowing the value to vary depending on which specific instance of an endpoint you request (for example, a specific blog post, identified by its ```id```).
 
 
 ```js
