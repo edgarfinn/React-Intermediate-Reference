@@ -108,7 +108,7 @@ The Route component takes at least two props: ```path```, which determines which
 
 ### Handling varying endpoints
 
-Using a colon within a path introduces a variable wild-card, allowing the value to vary depending on which specific instance of an endpoint you request (for example, a specific blog post, identified by its ```id```).
+Using a colon within a path introduces a variable wild-card. The wild-card references a dynamic endpoint, allowing the value to vary depending on which specific instance of an endpoint you request (for example, a specific blog post, identified by its ```:id```).
 
 
 ```js
