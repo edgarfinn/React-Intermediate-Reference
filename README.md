@@ -281,3 +281,8 @@ Once passed in, you must then declare the ```{...field.input}``` object. This ob
 ```reduxForm``` is a function very similar to {connect} from react-redux. It allows your components to communicate with the ```formReducer``` reducer that we just mapped to our ```rootReducer``` above.
 
 The Field component has no concept of appearance, and therefore no presentational value.
+
+
+Reference code in repositories:
+
+- [React Redux Blog Template](https://github.com/edgarfinn/react-redux-blog-template) 
