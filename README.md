@@ -243,6 +243,7 @@ class PostsNew extends Component {
     return (
       <div>
         <input
+          // remember to declare the input type!
           type="text"
           {...field.input}
          />
