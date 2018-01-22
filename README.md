@@ -115,7 +115,53 @@ Using a colon within a path introduces a variable wild-card. The wild-card refer
 <Route path="/posts/:id" component={PostsShow} />
 ```
 
-#### LODASH TIP:
+Avoid loading multiple components for similar paths.
+---
+Router will load **all** components whos paths match the first part of an endpoint request. So if two components are routed to path endpoints that partly match one another (ie **/users** and **/users**/edgarfinn ), then components matched to both of these endpoints will be mounted and rendered.
+
+This can be avoided using react-router-dom's ```Switch``` component.
+
+```js
+import { BroswerRouter, Route, Switch } from 'react-router-dom';
+
+<BrowserRouter>
+  <div>
+    <Switch>
+      <Route path="/users/:id" component={UserProfile} />
+      <Route path="/users" component={UserList} />
+      <Route path="/" component={HomePage} />
+    </Switch>
+  </div>
+</BrowserRouter>
+
+```
+Now, the UserList component will not be rendered for requests to "/users/edgarfinn".
+
+**NOTE:** The Switch component will render ONLY the first Route that matches the current URL being requested, THEREFORE you must list your Routes in order from most specific path, to least specific path (as above).
+
+Navigation
+---
+React-router-dom's ```Link``` component acts similarly to an anchor tag.
+
+Syntax:
+
+```js
+import { Link } from 'react-router-dom';
+
+<Link to="/posts/new">
+  Add New Post
+</Link>
+
+//will render to the DOM as:
+
+<a href="/posts/new">Add New Post</a>
+
+```
+
+A Link component essentially renders as an anchor tag, but with a couple of pre-written event handlers to prevent the browser from performing certain default actions such as sending further requests to the server.
+
+LODASH TIP:
+---
 
 Converting arrays of objects to Objects with lodash's ```_.mapKeys```
 
@@ -160,3 +206,55 @@ console.log(state)
 }
 */
 ```
+
+Redux Form
+---
+Redux form handles changes in form fields, taking care of event listeners, state changes and input validation.
+
+```$ npm install redux-form --save```
+
+src/reducers/index.js
+```js
+import { reducer as formReducer } from 'redux-form'
+```
+
+The default name of this function is reducers, so it helps to import it and assign it to a less generic reference such as ```formReducer```, to avoid erroneous references.
+
+
+src/reducers/index.js
+```js
+import { reducer as formReducer } from 'redux-form'
+
+const rootReducer = combineReducers({
+  // formReducer MUST be mapped to a key named 'form'
+  form: formReducer
+})
+```
+
+
+Then, on your form component (in this case) src/components/posts_new.js:
+```js
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+
+class PostsNew extends Component {
+  <Field
+  name="title"
+  component={}
+  />
+  ...
+}
+export default reduxForm({
+  // This value (PostsNewForm) must be unique.
+  // If duplicated elsewhere, your state will be overwritten
+  form: 'PostsNewForm'
+})
+```
+
+The ```Field``` component is essentially a react component, which is used to represent a distinct input that will be visible on-screen to your users. It is declared specifying a ```name``` property, which specifies the exact piece of state the field will produce. For example the 'title' property of state, as per the above example.
+
+Redux form saves you having to set up event handlers, action creators and input validation.  It is automatically connected to redux-form and passes input values straight to your formReducer reducer. You should always allow **one** Field component for **each** piece of state to be updated.
+
+```reduxForm``` is a function very similar to {connect} from react-redux. It allows your components to communicate with the ```formReducer``` reducer that we just mapped to our ```rootReducer``` above.
+
+The Field component has no concept of appearance, and therefore no presentational value. 
