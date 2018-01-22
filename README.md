@@ -317,8 +317,8 @@ render () {
 
       <Field
         // describes which bit of state is being edited
-        label="Tags"
-        name="tags"
+        label="Categories"
+        name="categories"
         component={this.renderField}
       />
     </form>
@@ -326,9 +326,60 @@ render () {
 }
 ```
 
+Form validation with redux-form
+---
 
+Firstly, in order to setup form validation with redux form, create a ```validate``` helper function and pass this into our reduxForm invocation at the bottom of the document:
 
+```js
 
+const validate = (values) =>  {
+  // values.title accesses the user input data in title input.
+  // values.categories accesses th euser input data in the categories input and so-on ...
+  const errors = {};
+  // If errors object is empty, the form is fine to submit.
+  // If errors has any properties, redux assumes the form is invalid.
+  return errors;
+}
+
+export default reduxForm({
+  // always make sure the value of form here is unique, to prevent conflict with any other forms on your application.
+  validate,
+  form: 'PostsNewForm'
+})(PostsNew);
+
+```
+
+The validate function should declare an (initially empty) 'errors' object, and return this object.
+
+When ```validate``` passes this object into ```reduxForm```, the object is evaluated. If it is still an empty object, then the form is assumed to be valid, and is therefore submitted. If - however - the ```errors``` object contains any properties, it will pass block the submission of the form and throw errors instead.
+
+```js
+
+const validate = (values) =>  {
+  const errors = {};
+
+  // if user did not enter a title value:
+  if (!values.title) {
+    // then add this error message to the errors object
+    errors.title = "Enter a title!";
+  }
+  // if user enters a title shorter than 3 characters:
+  if (values.title.length < 3) {
+    // then add this error message
+    errors.title = "Title must be at least 3 characters";
+  }
+  if (!values.categories) {
+    errors.categories = "Enter some categories!";
+  }
+  if (!values.content) {
+    errors.content = "Enter some content!";
+  }
+  // If errors object is empty, the form is fine to submit.
+// If errors has any properties, redux assumes the form is invalid.
+return errors;
+}
+```
 Reference code in repositories:
 ---
 
