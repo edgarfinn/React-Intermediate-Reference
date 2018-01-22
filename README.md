@@ -45,8 +45,10 @@ Then in the parent-most component / module that you want to handle routes:
 ```js
 // based on create-react-app package
 import React, { Component } from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
+
+// react-router set-up
+import {BrowserRouter, Route} from 'react-router-dom';
 
 class Hello extends React.Component {
   render() {
@@ -67,7 +69,9 @@ class App extends Component {
         <h1 className="App-title">Welcome to React</h1>
         <BrowserRouter>
           <div>
+            // return Hello component for requests to /hello
             <Route path="/hello" component={Hello} />
+            // return Goodbye component for requests to /goodbye
             <Route path="/goodbye" component={Goodbye} />
           </div>
         </BrowserRouter>
@@ -91,13 +95,9 @@ localhost:3000/goodbye
 -> Welcome to React
 -> Goodbye!!
 
-All changes in URL within a react app are first passed into the History library, which forwards the new URL to React Router
+All changes in URL within a react app are first passed into the History library, which forwards the new URL to React Router. The ```{BrowserRouter}``` method from react-router-dom interacts with the History library and determines what to do based on any changes to the URL.
 
-The ```{BrowserRouter}``` method from react-router-dom interacts with the History library and determines what to do based on any changes to the URL.
-
-the ```{Route}``` object is a React component that can be rendered inside any other react component.
-
-Route is used to configure different components to be rendered based on the URL entered in the browser.
+The ```{Route}``` object is a React component that can be rendered inside any other react component. Route is used to configure different components to be rendered based on the URL entered in the browser.
 
 The Route component takes at least two props: ```path```, which determines which URL should trigger the rendering of that component, and ```component```, which determines the component to be rendered based on the path.
 
@@ -117,7 +117,24 @@ Using a colon within a path introduces a variable wild-card. The wild-card refer
 
 #### LODASH TIP:
 
-Converting arrays to Objects with lodash's ```_.mapKeys```
+Converting arrays of objects to Objects with lodash's ```_.mapKeys```
+
+When ```get``` requesting arrays of data from APIs, lodash's ```_.mapKeys``` method can be useful for converting the array into an object of referenceable objects.
+
+For example:
+
+```js
+// Turning this array:
+[{id:1,value: "One"},{id:2,value: "Two"},{id:3,value: "Three"}]
+
+// Into this object, referenceable by an internal key reference of your choice:
+{
+  '1': {id:1,value: "One"},
+  '2': {id:2,value: "Two"},
+  '3': {id:3,value: "Three"}
+}
+
+```
 
 The ```_.mapKeys``` method takes an array of uniform arguments as the first argument, and a specified key as the second argument. The returned value is an object of the same uniform objects from the array, each referenced using the key passed as the second argument.
 
