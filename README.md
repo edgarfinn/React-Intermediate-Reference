@@ -284,5 +284,6 @@ The Field component has no concept of appearance, and therefore no presentationa
 
 
 Reference code in repositories:
+---
 
-- [React Redux Blog Template](https://github.com/edgarfinn/react-redux-blog-template) 
+- [React Redux Blog Template](https://github.com/edgarfinn/react-redux-blog-template)
