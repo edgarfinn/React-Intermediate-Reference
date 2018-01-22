@@ -236,7 +236,9 @@ Then, on your form component (in this case) src/components/posts_new.js:
 ```js
 class PostsNew extends Component {
 
-  // the 'field' argument allows the Field component to pass in a few event handlers that allows the Field component below to map its state and reducer interactions with this exact input field.
+  // the 'field' argument allows the Field component to pass in a few event handlers
+  // that allows the Field component below to map its state and reducer interactions
+  // with this exact input field.
   renderTitleField(field) {
     return (
       <div>
