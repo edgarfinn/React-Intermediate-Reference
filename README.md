@@ -127,7 +127,7 @@ For example:
 // Turning this array:
 [{id:1,value: "One"},{id:2,value: "Two"},{id:3,value: "Three"}]
 
-// Into this object, each child object referenceable by an internal key reference of your choice:
+// Into this object, each child object referenceable by an internal key of your choice:
 {
   '1': {id:1,value: "One"},
   '2': {id:2,value: "Two"},
