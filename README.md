@@ -272,15 +272,61 @@ export default reduxForm({
 })(PostsNew);
 ```
 
-The ```Field``` component is essentially a react component, which is used to represent a distinct input that will be visible on-screen to your users. It is declared, specifying a ```name``` property, which identifies the piece of state the field will produce, and a ```component``` property, which should be used to reference the JSX that will determin its appearance. For example the ```title``` name property above, maps this field's input data to the ```title``` state property. And the ```renderTitleField``` function is passed in to determine the appearance of the Field.
+The ```Field``` component is essentially a react component, which is used to represent a distinct input that will be visible on-screen to your users. It has no concept of appearance, and therefore no JSX or presentational value until you give it some. The Field component is declared, specifying a ```name``` property, which identifies the piece of state the field will produce, and a ```component``` property, which should be used to reference the JSX that will determin its appearance. For example the ```title``` name property above, maps this field's input data to the ```title``` state property. And the ```renderTitleField``` function is passed in to determine the appearance of the Field.
 
 The Field component is only able to map user interactions with the presentational component (```renderTitleField```) if ```renderTitleField``` is set to receive a ```field``` argument. So it is vital this argument is declared when declaring the Field's presentational component.
 
 Once passed in, you must then declare the ```{...field.input}``` object. This object contains a number of different event handlers and props, such as ```onChange``` and ```onBlur```, which can all be abbreviated into this one destructured (?) declaration.
 
-```reduxForm``` is a function very similar to {connect} from react-redux. It allows your components to communicate with the ```formReducer``` reducer that we just mapped to our ```rootReducer``` above.
+The ```reduxForm``` invocation at the bottom is a function very similar to {connect} from react-redux. It allows your components to communicate with the ```formReducer``` reducer that we just mapped to our ```rootReducer``` above.
 
-The Field component has no concept of appearance, and therefore no presentational value.
+### Modularising multiple Fields in one form.
+
+The above example works great, but is not quite setup to easily scale up if you want to render more then one input field.
+
+If you wish to use the same presentational function in order to render several inputs for several Field components, you can modularise the presentational component by making use of the fields props like so:
+
+```js
+// generic renderField presentational component
+renderField(field) {
+  return (
+    <div className="form-group">
+    // access fields label prop to dynamically access the label property
+      <label>{field.label}</label>
+      <input
+        className="form-control"
+        type="text"
+        {...field.input}
+       />
+    </div>
+  )
+}
+
+// now this renderField function can be used to render multiple inputs for multiple fields,
+// so long as each declares a label property like so:
+
+render () {
+  return (
+    <form>
+      <Field
+        // describes which bit of state is being edited
+        label="Title"
+        name="title"
+        component={this.renderField}
+      />
+
+      <Field
+        // describes which bit of state is being edited
+        label="Tags"
+        name="tags"
+        component={this.renderField}
+      />
+    </form>
+  )
+}
+```
+
+
 
 
 Reference code in repositories:
