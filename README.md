@@ -274,6 +274,7 @@ export default reduxForm({
 
 The ```Field``` component is essentially a react component, which is used to represent a distinct input that will be visible on-screen to your users. It has no concept of appearance, and therefore no JSX or presentational value until you give it some. The Field component is declared, specifying a ```name``` property, which identifies the piece of state the field will produce, and a ```component``` property, which should be used to reference the JSX that will determin its appearance. For example the ```title``` name property above, maps this field's input data to the ```title``` state property. And the ```renderTitleField``` function is passed in to determine the appearance of the Field.
 
+
 The Field component is only able to map user interactions with the presentational component (```renderTitleField```) if ```renderTitleField``` is set to receive a ```field``` argument. So it is vital this argument is declared when declaring the Field's presentational component.
 
 Once passed in, you must then declare the ```{...field.input}``` object. This object contains a number of different event handlers and props, such as ```onChange``` and ```onBlur```, which can all be abbreviated into this one destructured (?) declaration.
@@ -309,15 +310,15 @@ render () {
   return (
     <form>
       <Field
-        // describes which bit of state is being edited
         label="Title"
+        // describes which bit of state is being edited
         name="title"
         component={this.renderField}
       />
 
       <Field
-        // describes which bit of state is being edited
         label="Categories"
+        // describes which bit of state is being edited
         name="categories"
         component={this.renderField}
       />
@@ -379,7 +380,24 @@ const validate = (values) =>  {
 // If errors has any properties, redux assumes the form is invalid.
 return errors;
 }
+
+
+
 ```
+
+### Displaying error messages to the user:
+
+The ```name``` property is not just responsible for mapping the input's data to state, it can also be used to map validation error messages back to the correct input field.
+
+For example:
+- ```errors.title = "Title must be at least 3 characters";``` will only be mapped back to the input field with the ```title``` name property.
+
+Simlarly:
+- ```errors.categories = "Enter some categories!";```  will only be mapped back to the input field with the ```categories``` name property.
+
+
+
+
 Reference code in repositories:
 ---
 
