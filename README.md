@@ -327,6 +327,7 @@ render () {
 }
 ```
 
+
 Form validation with redux-form
 ---
 
@@ -387,7 +388,7 @@ return errors;
 
 ### Displaying error messages to the user:
 
-The ```name``` property is not just responsible for mapping the input's data to state, it can also be used to map validation error messages back to the correct input field.
+The ```name``` property in the Field component is not only responsible for mapping the input's data to state, it is also used to map validation error messages back to the correct presentational component.
 
 For example:
 - ```errors.title = "Title must be at least 3 characters";``` will only be mapped back to the input field with the ```title``` name property.
@@ -395,9 +396,56 @@ For example:
 Simlarly:
 - ```errors.categories = "Enter some categories!";```  will only be mapped back to the input field with the ```categories``` name property.
 
+So these error messages can now be referenced from the presentational component using ```{field.meta.error}```, but the relevant error property **MUST** match the string assigned to the name property of the correct Field component:
 
+```js
+renderField(field) {
+  return (
+    <div className="form-group">
+      <label>{field.label}</label>
+      <input
+        className="form-control"
+        type="text"
+        {...field.input}
+       />
+       {field.meta.error}
+    </div>
+  )
+}
+```
 
+Submitting form data
+---
 
+Redux form only handles form data by updating state and validating it with its own event handlers. What you do with the data once it has been passed into state and validated is entirely up to you. Therefore, you need to write your own onSubmit handler, and declare exactly what you want it to do with your user's input.
+
+HOWEVER - Redux form does run a check on the validity of your user's input before passing it over to your submit handler, but it requires some configuration in order to do so:
+
+- First you need to declare an onSubmit handler helper function. When configured correctly, redux form will automatically pass this handler a ```values``` object, containing the values of your user's input.
+
+```js
+onSubmit(values) {
+  console.log(values)
+}
+```
+
+- Then at the start of your render function, you need to access and declare the handleSubmit function from your props:
+
+```js
+render () {
+  const { handleSubmit } = this.props;
+  // same as: const handleSubmit = this.props.handleSubmit;
+  // ...
+  // more code
+  // ...
+}
+```
+- Then on your form element, pass in you onSubmit handler but **via** an invocation of the handleSubmit function like so:
+
+```js
+<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+
+```
 Reference code in repositories:
 ---
 
