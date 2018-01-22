@@ -265,12 +265,13 @@ class PostsNew extends Component {
 }
 
 export default reduxForm({
-  // always make sure the value of form here is unique, to prevent conflict with any other forms on your application.
+  // always make sure the value of form here is unique,
+  // to prevent conflict with any other forms on your application.
   form: 'PostsNewForm'
 })(PostsNew);
 ```
 
-The ```Field``` component is essentially a react component, which is used to represent a distinct input that will be visible on-screen to your users. It is declared specifying a ```name``` property, which specifies the exact piece of state the field will produce, and a ```component``` property, which should be used to reference the JSX that will determin its appearance. For example the 'title' name property above, maps this field's input data to the 'title' state property. And the renderTitleField function is passed in to determine the appearance of the Field.
+The ```Field``` component is essentially a react component, which is used to represent a distinct input that will be visible on-screen to your users. It is declared, specifying a ```name``` property, which identifies the piece of state the field will produce, and a ```component``` property, which should be used to reference the JSX that will determin its appearance. For example the 'title' name property above, maps this field's input data to the 'title' state property. And the renderTitleField function is passed in to determine the appearance of the Field.
 
 
 ```reduxForm``` is a function very similar to {connect} from react-redux. It allows your components to communicate with the ```formReducer``` reducer that we just mapped to our ```rootReducer``` above.
