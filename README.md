@@ -234,21 +234,39 @@ const rootReducer = combineReducers({
 
 Then, on your form component (in this case) src/components/posts_new.js:
 ```js
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-
 class PostsNew extends Component {
-  <Field
-  name="title"
-  component={}
-  />
-  ...
+
+  // the 'field' argument allows the Field component to pass in a few event handlers that allows the Field component below to map its state and reducer interactions with this exact input field.
+  renderTitleField(field) {
+    return (
+      <div>
+        <input
+          type="text"
+          {...field.input}
+         />
+      </div>
+    )
+  }
+
+  render () {
+    return (
+      <form>
+        <Field
+          // describes which bit of state is being edited
+          name="title"
+          // specify a component function to determine this Field's appearance
+          component={this.renderTitleField}
+        />
+      </form>
+    )
+  }
 }
+
+
 export default reduxForm({
-  // This value (PostsNewForm) must be unique.
-  // If duplicated elsewhere, your state will be overwritten
+  // always make sure the value of form here is unique, to prevent conflict with any other forms on your application.
   form: 'PostsNewForm'
-})
+})(PostsNew);
 ```
 
 The ```Field``` component is essentially a react component, which is used to represent a distinct input that will be visible on-screen to your users. It is declared specifying a ```name``` property, which specifies the exact piece of state the field will produce. For example the 'title' property of state, as per the above example.
@@ -257,4 +275,4 @@ Redux form saves you having to set up event handlers, action creators and input 
 
 ```reduxForm``` is a function very similar to {connect} from react-redux. It allows your components to communicate with the ```formReducer``` reducer that we just mapped to our ```rootReducer``` above.
 
-The Field component has no concept of appearance, and therefore no presentational value. 
+The Field component has no concept of appearance, and therefore no presentational value.
