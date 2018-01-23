@@ -436,9 +436,26 @@ const validate = (values) =>  {
 return errors;
 }
 
-
-
 ```
+
+In order to check specific characteristics of an input string (ie, if it contains more than ```n``` characters, or no upper case letters...) the value can only be evaluated once an input value exists, and not before.
+
+This will crash the application, because values.title.length will not be possible to evaluate at the point of rendering, only once the user has entered some text:
+```js
+if (values.title.length < 3) {
+  errors.title = "Title must be at least 3 characters";
+}
+```
+
+So a simple preliminary boolean can conditionally validate this input like so:
+
+```js
+if (values.content && values.content.length < 10) {
+  errors.content = 'Content must be longer than 10 characters!';
+}
+```
+
+Now ```values.content.length``` will only be evaluated if ```values.content``` returns a truthy value.
 
 ### Displaying error messages to the user:
 
@@ -579,6 +596,39 @@ renderField(field) {
 
 Destructuring assignments can be powerful help in cleaning up your code.
 
+Mapping action creators to redux-form components
+---
+In this example, the user's form input needs to be submitted, and once valid, we want to post it to the back-end API. So an action creator will need to be written to handle a post request to the API.
+
+src/actions/index.js
+```js
+export const createPost = (values) => {
+  console.log('action received', values);
+  const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values);
+
+  return {
+    type: CREATE_POST,
+    payload: request
+  }
+}
+```
+
+As with all containers connected to an action creator, the container first needs to import the action creator(s), and the ```connect``` function from react-redux, in order to map the action creator to its props.
+
+In this case, we also want to trigger the action creator with the ```onSubmit``` helper, and pass our form's values into it. Remember, now that the ```onSubmit``` helper is mapped to redux-form's ```handleSubmit``` handler, it is configured to receive the form's input ```values``` as an argument, so its easy to pass these straight on to our action creator.
+
+src/components/posts_new.js
+```js
+import { connect } from 'react-redux';
+import { createPost } from '../actions';
+
+// ...
+
+onSubmit(values) {
+  // this === PostsNew component
+  this.props.createPost(values)
+}
+```
 
 Reference code in repositories:
 ---
