@@ -315,16 +315,23 @@ render () {
   return (
     <form>
       <Field
-        label="Title"
         // describes which bit of state is being edited
+        label="Title"
         name="title"
         component={this.renderField}
       />
 
       <Field
-        label="Categories"
         // describes which bit of state is being edited
+        label="Categories"
         name="categories"
+        component={this.renderField}
+      />
+
+      <Field
+        // describes which bit of state is being edited
+        label="Post Content"
+        name="content"
         component={this.renderField}
       />
     </form>
