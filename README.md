@@ -279,7 +279,7 @@ The ```Field``` component is essentially a react component, which is used to rep
 
 The Field component is only able to map user interactions with the presentational component (```renderTitleField```) if ```renderTitleField``` is set to receive a ```field``` argument. So it is vital this argument is declared when declaring the Field's presentational component.
 
-Once passed in, you must then declare the ```{...field.input}``` object. This object contains a number of different event handlers and props, such as ```onChange``` and ```onBlur```, which can all be abbreviated into this one destructured (?) declaration.
+Once passed in, you must then declare the ```{...field.input}``` object. This object contains a number of different event handlers and props, such as ```onChange``` and ```onBlur```, which can all be abbreviated into this one (destructured?) declaration.
 
 The ```reduxForm``` invocation at the bottom is a function very similar to {connect} from react-redux. It allows your components to communicate with the ```formReducer``` reducer that we just mapped to our ```rootReducer``` above.
 
