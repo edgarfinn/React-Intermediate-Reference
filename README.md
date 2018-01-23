@@ -218,7 +218,7 @@ src/reducers/index.js
 import { reducer as formReducer } from 'redux-form'
 ```
 
-The default name of this function is reducers, so it helps to import it and assign it to a less generic reference such as ```formReducer```, to avoid erroneous references.
+The default name of this function is ```reducer```, so it helps to import it and assign it to a less generic reference such as ```formReducer```, to avoid erroneous references.
 
 
 src/reducers/index.js
