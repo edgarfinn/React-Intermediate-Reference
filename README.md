@@ -285,7 +285,7 @@ The ```reduxForm``` invocation at the bottom is a function very similar to {conn
 
 ### Modularising multiple Fields in one form.
 
-The above example works great, but is not quite setup to easily scale up if you want to render more then one input field.
+The above example works great, but is not optimised for scaling up and elaborating easily if you want to render more then one input field.
 
 If you wish to use the same presentational function in order to render several inputs for several Field components, you can modularise the presentational component by making use of the fields props like so:
 
