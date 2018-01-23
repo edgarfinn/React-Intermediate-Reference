@@ -342,6 +342,45 @@ render () {
 }
 ```
 
+Submitting form data
+---
+
+Redux form only handles form data by updating state and validating it with its own event handlers. What you do with the data once it has been passed into state and validated is largely up to you. Therefore, you need to write your own onSubmit handler, and declare exactly what you want it to do with your user's input.
+
+HOWEVER - Redux form does run a check on the validity of your user's input before passing it over to your submit handler, but it requires some configuration in order to do so:
+
+- First you need to declare an onSubmit handler helper function. When configured correctly, redux form will automatically pass this handler a ```values``` object, containing the values of your user's input.
+
+```js
+onSubmit(values) {
+  console.log(values)
+}
+//{title: "user's title data", categories: "user's cat data", content: "user's content data"}
+```
+
+- Then at the start of your render method, access redux-form's handleSubmit method from reduxForm's props, and assign it to a reference:
+
+```js
+render () {
+  const { handleSubmit } = this.props;
+  // same as: const handleSubmit = this.props.handleSubmit;
+  // ...
+  // more code
+  // ...
+}
+```
+
+```handleSubmit``` is a pre-written handler provided by reduxForm, which is set to handle submissions for you by combining things like validation automatically.
+
+All this function does is handles the state and validation of the input, after data is passed to redux state and validated, you need to tell ```handleSubmit```  what to do next, by passing your ```onSubmit``` function in as a callback argument...so...
+
+- On your form element, pass in your onSubmit handler **via an invocation of the handleSubmit function** like so:
+
+```js
+<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+```
+
+Make sure you ```bind(this)``` to onSubmit to this when passing in as a callback, so that it still has access to your component.
 
 Form validation with redux-form
 ---
