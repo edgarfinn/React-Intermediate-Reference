@@ -135,7 +135,7 @@ import { BroswerRouter, Route, Switch } from 'react-router-dom';
 </BrowserRouter>
 
 ```
-Now, the UserList component will not be rendered for requests to "/users/edgarfinn".
+Now, the ```UserList``` or ```HomePage``` components will not be rendered for requests to "/users/edgarfinn".
 
 **NOTE:** The Switch component will render ONLY the first Route that matches the current URL being requested, THEREFORE you must list your Routes in order from most specific path, to least specific path (as above).
 
