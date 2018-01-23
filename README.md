@@ -596,7 +596,7 @@ renderField(field) {
 
 Destructuring assignments can be powerful help in cleaning up your code.
 
-Mapping action creators to redux-form components
+Mapping action creators to redux-form containers
 ---
 In this example, the user's form input needs to be submitted, and once valid, we want to post it to the back-end API. So an action creator will need to be written to handle a post request to the API.
 
