@@ -213,6 +213,10 @@ Redux form saves you having to set up event handlers, action creators and input 
 
 ```$ npm install redux-form --save```
 
+### Setup:
+
+Before implementation, you should first make sure the redux-form reducer function is mapped in your root reducer:
+
 The default name of this function is ```reducer```, so it helps to import it and assign it to a less generic reference such as ```formReducer```, to avoid erroneous references.
 
 src/reducers/index.js
@@ -226,8 +230,9 @@ const rootReducer = combineReducers({
 })
 
 ```
+### Implementation:
 
-Then, on your form component (in this case) src/components/posts_new.js:
+On your form component (in this case src/components/posts_new.js):
 
 ```js
 class PostsNew extends Component {
