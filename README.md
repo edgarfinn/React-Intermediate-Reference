@@ -9,13 +9,13 @@ If you are just starting out with React, start by familiarising yourself with th
 
 This Readme will explain the basic principals of how to:
 
-- Route different content to different endpoint requests within a URL.
+- Use [React Router](#react-router) to route different content to different endpoint requests within a URL.
 
-- Post information to an endpoint.
+- Post information to a specific endpoint.
 
 - Load data from a back-end API based on users current API.
 
-- Validate user input in react forms.
+- Validate user's data input using [Redux Form](#redux-form) .
 
 React Router
 ---
