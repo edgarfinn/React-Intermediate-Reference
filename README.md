@@ -529,7 +529,7 @@ renderField(field) {
 
 ```
 
-[ES6 destructuring assignments](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) can be a smart way to abbreviate assignments, and reduce word counts in your code base.
+[ES6 destructuring assignments](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) can be a powerful tool for cleaning up your code, they offer a smart way to abbreviate value assignments from various data types, in order to the reduce the overall word count in your code base.
 
 This simple line...
 ```js
@@ -538,6 +538,46 @@ const { meta } = field
 // const meta = field.meta
 ```
 ...means that you can now abbreviate ```field.meta.touched``` to ```meta.touched```, and ```field.meta.error``` to ```meta.error```
+
+```js
+renderField(field) {
+  const { meta } = field;
+  const className = `form-group ${meta.touched && meta.error ? 'has-danger' : ''}`;
+  return (
+    <div className={className}>
+      <label>{field.label}</label>
+      <input
+        className="form-control"
+        type="text"
+        {...field.input}
+       />
+       {meta.touched ? meta.error : ''}
+    </div>
+  )
+}
+```
+
+This is an improvement, but there's still a lot of references to meta. To go one step further, we can further stipulate ```const { meta: {touched, error} } = field;``` in order to identify ```touched``` and ```error``` as properties that belong inside the ```field.meta``` key. So we can now abbreviate ```meta.touched``` and ```meta.error``` to simply ```touched``` and ```error```:
+
+```js
+renderField(field) {
+  const { meta: {touched, error} } = field;
+  const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+  return (
+    <div className={className}>
+      <label>{field.label}</label>
+      <input
+        className="form-control"
+        type="text"
+        {...field.input}
+       />
+       {touched ? error : ''}
+    </div>
+  )
+}
+```
+
+Destructuring assignments can be powerful help in cleaning up your code.
 
 
 Reference code in repositories:
