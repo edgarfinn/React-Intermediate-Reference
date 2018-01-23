@@ -473,12 +473,15 @@ The only problem with the above code is that all error messages ```{field.meta.e
 Redux form breaks the Field's life-cycle into three chapters:
 
 - Pristine
+
   When the field has just mounted, and not yet been interacted with.
 
 - Touched
+
   Once the field has been interacted with (but not necessarily submitted yet)
 
 - Invalid
+
   Once the input has been validated and found to be invalid (ie after a form submission)
 
 So, using the {field.meta.touched} property, you can alert users to invalid data input **before** they've tried to submit it. This property returns a falsy value until the user has clicked or interacted with the Field and moved focus away again (ie clicked in, and then clicked out of an input).
