@@ -315,22 +315,25 @@ render () {
   return (
     <form>
       <Field
-        // describes which bit of state is being edited
+        // sets a label property for accessing in the presentational component
         label="Title"
+        // describes which bit of state is being edited
         name="title"
         component={this.renderField}
       />
 
       <Field
-        // describes which bit of state is being edited
+        // sets a label property for accessing in the presentational component
         label="Categories"
+        // describes which bit of state is being edited
         name="categories"
         component={this.renderField}
       />
 
       <Field
-        // describes which bit of state is being edited
+        // sets a label property for accessing in the presentational component
         label="Post Content"
+        // describes which bit of state is being edited
         name="content"
         component={this.renderField}
       />
