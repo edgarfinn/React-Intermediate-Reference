@@ -117,7 +117,7 @@ Using a colon within a path introduces a variable wild-card. The wild-card refer
 
 Avoid loading multiple components for similar paths.
 ---
-Router will load **all** components whos paths match the first part of an endpoint request. So if two components are routed to path endpoints that partly match one another (ie **/users** and **/users**/edgarfinn ), then components matched to both of these endpoints will be mounted and rendered.
+Router will load **all** components whos paths match the first part of an endpoint request. So if two components are routed to path endpoints that partly match one another (ie **/users** and **/users**/edgarfinn ), then components matched to **both** of these endpoints will be mounted and rendered.
 
 This can be avoided using react-router-dom's ```Switch``` component.
 
