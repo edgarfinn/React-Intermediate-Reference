@@ -369,7 +369,7 @@ export default reduxForm({
 
 The validate function should declare an (initially empty) 'errors' object, and return this object.
 
-When ```validate``` passes this object into ```reduxForm```, the object is evaluated. If it is still an empty object, then the form is assumed to be valid, and is therefore submitted. If - however - the ```errors``` object contains any properties, it will pass block the submission of the form and throw errors instead.
+When ```validate``` passes this object into ```reduxForm```, the object is evaluated. If it is still an empty object, then the form is assumed to be valid, and is therefore submitted. If - however - the ```errors``` object contains any properties, it will block the submission of the form and throw errors instead.
 
 ```js
 
@@ -432,7 +432,7 @@ renderField(field) {
 Submitting form data
 ---
 
-Redux form only handles form data by updating state and validating it with its own event handlers. What you do with the data once it has been passed into state and validated is entirely up to you. Therefore, you need to write your own onSubmit handler, and declare exactly what you want it to do with your user's input.
+Redux form only handles form data by updating state and validating it with its own event handlers. What you do with the data once it has been passed into state and validated is largely up to you. Therefore, you need to write your own onSubmit handler, and declare exactly what you want it to do with your user's input.
 
 HOWEVER - Redux form does run a check on the validity of your user's input before passing it over to your submit handler, but it requires some configuration in order to do so:
 
@@ -445,7 +445,7 @@ onSubmit(values) {
 //{title: "user's title data", categories: "user's cat data", content: "user's content data"}
 ```
 
-- Then at the start of your render function, you need to access and declare the handleSubmit function from your props:
+- Then at the start of your render method, access redux-form's handleSubmit method from your props, and assign it to a reference:
 
 ```js
 render () {
