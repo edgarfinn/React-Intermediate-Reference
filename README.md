@@ -557,7 +557,7 @@ renderField(field) {
 }
 ```
 
-This is an improvement, but there's still a lot of references to meta. To go one step further, we can further stipulate ```const { meta: {touched, error} } = field;``` in order to identify ```touched``` and ```error``` as properties that belong inside the ```field.meta``` key. So we can now abbreviate ```meta.touched``` and ```meta.error``` to simply ```touched``` and ```error```:
+This is an improvement, but there's still a lot of references to ```meta```. So to go one step further, we can further stipulate ```const { meta: {touched, error} } = field;``` in order to identify ```touched``` and ```error``` as properties that belong inside the ```field.meta``` key. This means we can now abbreviate ```meta.touched``` and ```meta.error``` to simply ```touched``` and ```error```:
 
 ```js
 renderField(field) {
