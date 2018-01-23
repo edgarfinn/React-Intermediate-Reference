@@ -491,6 +491,54 @@ So, using the ```{field.meta.touched}``` property, you can alert users to invali
 {field.meta.touched ? field.meta.error : ''}
 ```
 
+### Conditional styling for error warnings
+
+You might want to colour an error message to grab the user's attention in the event of erroneous submissions or data input.
+
+Here, you only want the error-related styling to appear if the form data is both **touched** and **has errors**, so you can render a className string conditionally, depending on the truthiness of these two factors like so:
+
+```js
+renderField(field) {
+  const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
+  return (
+    <div className={className}>
+    // ...
+    </div>
+  )
+}
+```
+
+### Destructuring tip:
+The ```renderField``` function is now making quite a few references to ```field.meta.someProperty```, which adds up to be wordy.
+
+```js
+renderField(field) {
+  const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
+  return (
+    <div className={className}>
+      <label>{field.label}</label>
+      <input
+        className="form-control"
+        type="text"
+        {...field.input}
+       />
+       {field.meta.touched ? field.meta.error : ''}
+    </div>
+  )
+}
+
+```
+
+[ES6 destructuring assignments](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) can be a smart way to abbreviate assignments, and reduce word counts in your code base.
+
+This simple line...
+```js
+const { meta } = field
+// same as:
+// const meta = field.meta
+```
+...means that you can now abbreviate ```field.meta.touched``` to ```meta.touched```, and ```field.meta.error``` to ```meta.error```
+
 
 Reference code in repositories:
 ---
