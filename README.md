@@ -484,52 +484,13 @@ Redux form breaks the Field's life-cycle into three chapters:
 
   Once the input has been validated and found to be invalid (ie after a form submission)
 
-So, using the {field.meta.touched} property, you can alert users to invalid data input **before** they've tried to submit it. This property returns a falsy value until the user has clicked or interacted with the Field and moved focus away again (ie clicked in, and then clicked out of an input).
+So, using the ```{field.meta.touched}``` property, you can alert users to invalid data input **before** they've tried to submit it. This property returns a falsy value until the user has clicked or interacted with the Field and moved focus away again (ie clicked in, and then clicked out of an input).
 
 ```js
 // show error message only after the field has been touched.
 {field.meta.touched ? field.meta.error : ''}
 ```
 
-Submitting form data
----
-
-Redux form only handles form data by updating state and validating it with its own event handlers. What you do with the data once it has been passed into state and validated is largely up to you. Therefore, you need to write your own onSubmit handler, and declare exactly what you want it to do with your user's input.
-
-HOWEVER - Redux form does run a check on the validity of your user's input before passing it over to your submit handler, but it requires some configuration in order to do so:
-
-- First you need to declare an onSubmit handler helper function. When configured correctly, redux form will automatically pass this handler a ```values``` object, containing the values of your user's input.
-
-```js
-onSubmit(values) {
-  console.log(values)
-}
-//{title: "user's title data", categories: "user's cat data", content: "user's content data"}
-```
-
-- Then at the start of your render method, access redux-form's handleSubmit method from reduxForm's props, and assign it to a reference:
-
-```js
-render () {
-  const { handleSubmit } = this.props;
-  // same as: const handleSubmit = this.props.handleSubmit;
-  // ...
-  // more code
-  // ...
-}
-```
-
-```handleSubmit``` is a pre-written handler provided by reduxForm, which is set to handle submission for you by combining things like validation automatically.
-
-All this function does is handles the state and validation of the input, after data is passed to redux state and validated, you need to tell ```handleSubmit```  what to do next, by passing your ```onSubmit``` function in as a callback argument...so...
-
-- On your form element, pass in your onSubmit handler **via an invocation of the handleSubmit function** like so:
-
-```js
-<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-```
-
-Make sure you ```bind(this)``` to onSubmit to this when passing in as a callback, so that it still has access to your component.
 
 Reference code in repositories:
 ---
