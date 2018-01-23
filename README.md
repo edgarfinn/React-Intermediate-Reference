@@ -279,7 +279,7 @@ The ```Field``` component is essentially a react component, which is used to rep
 
 The presentational component (```renderTitleField```) is passed a ```field``` argument, which allows redux-form to map user interactions between the presentational component (```renderTitleField```) and the ```Field``` component, and therefore pass user input data on to redux's state. So it is vital this argument is declared when declaring the Field's presentational component.
 
-This ```field``` argument also allows access to any useful props values you may pass to it from the ```Field``` component. These are passed in like normal props: ```<Field label="Title" ... />```, are referenced using ```field.example``` (confusingly, **NOT ```field.props.example```** as with normal components) 
+This ```field``` argument also allows access to any useful props values you may pass to it from the ```Field``` component. These are passed in like normal props: ```<Field label="Title" ... />```, are referenced using ```field.example``` (confusingly, **NOT ```field.props.example```** as one might assume) 
 
 
 Once passed in, you must then declare the ```{...field.input}``` object. This object contains a number of different event handlers and props, such as ```onChange``` and ```onBlur```, which can all be abbreviated into this one (destructured?) declaration.
