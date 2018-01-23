@@ -444,7 +444,6 @@ render () {
 
 ```js
 <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-
 ```
 Reference code in repositories:
 ---
