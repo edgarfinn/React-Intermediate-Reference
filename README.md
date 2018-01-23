@@ -15,7 +15,7 @@ This Readme will explain the basic principals of how to:
 
 - Load data from a back-end API based on users current API.
 
-- Validate user's data input using [Redux Form](#redux-form) .
+- Handle, validate and update redux state with a user's form input using [Redux Form](#redux-form) .
 
 React Router
 ---
