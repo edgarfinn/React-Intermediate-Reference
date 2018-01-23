@@ -265,6 +265,7 @@ class PostsNew extends Component {
     )
   }
 }
+
 // notice how implementation here is similar to {connect}
 export default reduxForm({
   // always make sure the value of form here is unique,
