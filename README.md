@@ -478,7 +478,7 @@ Redux form breaks the Field's life-cycle into three chapters:
 
 - Touched
 
-  Once the field has been interacted with (but not necessarily submitted yet)
+  After the field has been interacted with (but not necessarily submitted yet)
 
 - Invalid
 
