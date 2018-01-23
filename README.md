@@ -215,7 +215,7 @@ Redux form saves you having to set up event handlers, action creators and input 
 
 ### Setup:
 
-Before implementation, you should first make sure the redux-form reducer function is mapped in your root reducer:
+Before implementation, you should first make sure the redux-form reducer function is mapped in your root reducer.
 
 The default name of this function is ```reducer```, so it helps to import it and assign it to a less generic reference such as ```formReducer```, to avoid erroneous references.
 
@@ -265,7 +265,7 @@ class PostsNew extends Component {
     )
   }
 }
-
+// notice how implementation here is similar to {connect}
 export default reduxForm({
   // always make sure the value of form here is unique,
   // to prevent conflict with any other forms on your application.
