@@ -432,6 +432,7 @@ HOWEVER - Redux form does run a check on the validity of your user's input befor
 onSubmit(values) {
   console.log(values)
 }
+//{title: "user's title data", categories: "user's cat data", content: "user's content data"}
 ```
 
 - Then at the start of your render function, you need to access and declare the handleSubmit function from your props:
