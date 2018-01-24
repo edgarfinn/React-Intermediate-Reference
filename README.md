@@ -13,7 +13,7 @@ This Readme will explain the basic principals of how to:
 
 - Post information to a specific endpoint.
 
-- Load data from a back-end API based on users current API.
+- Load data from a back-end API based on users current URL endpoint.
 
 - Handle, validate and update redux state with a user's form input using [Redux Form](#redux-form) .
 
