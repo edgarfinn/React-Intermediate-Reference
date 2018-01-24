@@ -440,7 +440,7 @@ return errors;
 
 In order to check specific characteristics of an input string (ie, if it contains more than ```n``` characters, or no upper case letters...) the value can only be evaluated once an input value exists, and not before.
 
-This will crash the application, because values.title.length will not be possible to evaluate at the point of rendering, only once the user has entered some text:
+The below code will crash the application, because ```values.title.length``` will not be possible to evaluate at the point of rendering, only once the user has entered some text:
 ```js
 if (values.title.length < 3) {
   errors.title = "Title must be at least 3 characters";
@@ -499,7 +499,7 @@ Redux form breaks the Field's life-cycle into three chapters:
 
 - Invalid
 
-  Once the input has been validated and found to be invalid (ie after a form submission)
+  Which is constantly true until the input value is valid.
 
 So, using the ```{field.meta.touched}``` property, you can alert users to invalid data input **before** they've tried to submit it. This property returns a falsy value until the user has clicked or interacted with the Field and moved focus away again (ie clicked in, and then clicked out of an input).
 
@@ -546,7 +546,7 @@ renderField(field) {
 
 ```
 
-[ES6 destructuring assignments](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) can be a powerful tool for cleaning up your code, they offer a smart way to abbreviate value assignments from various data types, in order to the reduce the overall word count in your code base.
+[ES6 destructuring assignments](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) can be a powerful tool for cleaning up your code, they offer a smart way to abbreviate value assignments from various data types, in order to reduce the overall word count in your code base.
 
 This simple line...
 ```js
@@ -603,7 +603,6 @@ In this example, the user's form input needs to be submitted, and once valid, we
 src/actions/index.js
 ```js
 export const createPost = (values) => {
-  console.log('action received', values);
   const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values);
 
   return {
