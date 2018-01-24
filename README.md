@@ -711,7 +711,7 @@ This can be used to access parameters from the requested endpoint. These params 
 
 For requests to /posts/123, the ```<Route path="/posts/:id">``` component would need to access the :id wildcard in order to load request the correct info to load to the browser.
 
-This could be done using ```this.props.match.params.id```
+This could be done using ```this.props.match.params.id```.
 
 
 
