@@ -751,7 +751,7 @@ IMPORTANT to note however, that this means existing posts will not retrieve upda
 
 The above should therefore be implemented with caution, and only used if data cannot or should not be altered remotely.
 
-Lodash onSubmit
+Lodash Omit
 ---
 
 ```js
