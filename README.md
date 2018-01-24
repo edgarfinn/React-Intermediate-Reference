@@ -616,7 +616,7 @@ As with all containers connected to an action creator, the container first needs
 
 In this case, we also want to trigger the action creator with the ```onSubmit``` helper, and pass our form's values into it. Remember, now that the ```onSubmit``` helper is mapped to redux-form's ```handleSubmit``` handler, it is configured to receive the form's input ```values``` as an argument, so its easy to pass these straight on to our action creator.
 
-Finally, we need to map our action creator to our container's props, which we do using a ```connect invocation``` as a callback passed into the ```reduxForm``` invocation.
+Finally, we need to map our action creator to our container's props, which we do using a ```connect``` invocation as a callback passed into the ```reduxForm``` invocation.
 
 src/components/posts_new.js
 
@@ -646,7 +646,7 @@ Programmatic Navigation with the History library.
 ---
 Automatically navigating the user around the application.
 
-The History library holds an array of paths that the browser has requested. Using paths that have been allocated to a Route components within our ```BrowserRouter``` method, by adding an endpoint to history array, we can redirect users to that endpoint.
+The History library holds an array of paths that the browser has requested. Using paths that have been allocated to a Route components within our ```BrowserRouter``` method, by adding an endpoint to the history array, we can programme the application to redirect users to that particular endpoint requests.
 
 To recap, our BroswerRouter's Routes currently looks like this:
 
@@ -661,7 +661,7 @@ To recap, our BroswerRouter's Routes currently looks like this:
 </BrowserRouter>
 ```
 
-Once the form has been submitted and posted, you'll probably want to re-direct the user to a new view (either the full list of all posts, or the post's detailed view). BUT either of these views first require the action creator's post request to first resolve, in order for the new post to render.
+Once the form has been submitted and posted, you'll probably want to re-direct the user to a new view (either the full list of all posts, or the post's detailed view). BUT redirects to either of these views require the action creator's post request to first resolve, otherwise the browser will attempt to navigate to non-existent content.
 
 Simply by telling our onSubmit helper to push a string that represents a path into the history array will cause the browser to re-direct to that path when the onSubmit helper is called:
 
@@ -680,7 +680,6 @@ But if the ```createPost``` action creator were to use a callback which was call
 src/actions/index.js
 ```js
 export const createPost = (values, redirectCallback) => {
-  console.log('action received', values);
   const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
   // call the callback only once the post request has resolved.
   .then(() => redirectCallback());
@@ -702,6 +701,11 @@ onSubmit(values) {
   })
 }
 ```
+
+Match Params by React Router
+---
+
+In order to load a particular page based on a parameter provided in the URL (ie '/posts/123'), react router provides components a props key called [```match```](https://reacttraining.com/react-router/web/api/match) object, which contains information about the ```<Route path>```
 
 Reference code in repositories:
 ---
