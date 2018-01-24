@@ -705,7 +705,7 @@ onSubmit(values) {
 Match Params by React Router
 ---
 
-In order to load a particular page based on a parameter provided in the URL (ie '/posts/123'), react router provides components a props key called [```match```](https://reacttraining.com/react-router/web/api/match), which is an object containing objects with information about the ```<Route path>```. In particular, ```match.params``` will provide key-value pairs parsed from the URL. So this can be used to access parameters from the requested endpoint. These params will be determined by the wildcards provided in the ```<Route path>``` declaration. So for example (```<Route path="/users/:userName/:entries">```) would have two params: ```userName``` and ```entries```.
+In order to load a particular page based on a parameter provided in the URL (ie '/posts/123'), react router provides components a props key called [```match```](https://reacttraining.com/react-router/web/api/match), which is an object containing objects with information about the ```<Route path>```. In particular, ```match.params``` will provide key-value pairs parsed from the URL. So this can be used to access parameters from the requested endpoint. These params will be determined by the wildcards provided in the ```<Route path>``` declaration. So for example ```<Route path="/users/:userName/:entries">``` would have two params: ```userName``` and ```entries```.
 
 
 
