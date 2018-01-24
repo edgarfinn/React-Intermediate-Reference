@@ -713,6 +713,9 @@ For requests to /posts/123, the ```<Route path="/posts/:id">``` component would 
 
 This could be done using ```this.props.match.params.id```.
 
+For a request to /posts/111, ```<Route path="/posts/:id">``` would identify the post id ```this.props.match.params.id``` as ```111```
+
+
 
 
 Reference code in repositories:
