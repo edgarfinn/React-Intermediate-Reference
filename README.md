@@ -715,8 +715,68 @@ This could be done using ```this.props.match.params.id```.
 
 For a request to /posts/111, ```<Route path="/posts/:id">``` would identify the post id ```this.props.match.params.id``` as ```111```
 
+OwnProps
+---
+the ownProps object is accessible within ```mapStateToProps```, and represents any props which are being passed into the component.
+```js
+// ownProps === this.props
+const mapStateToProps = ({ posts }, ownProps) => {
 
+}
+```
 
+Ownprops can be used to access URL info, in order to access just the specific data object we need to render a single post:
+
+```js
+const mapStateToProps = ({ posts }, ownProps) => {
+  return {post: posts[ownProps.match.params.id]}
+}
+```
+
+Conditional network requests
+---
+If - each time you request a post - you are saving them to your state, you may want to prevent requesting that data again, since its already retrieved.)
+
+This can reduce network traffic, and improve performance by reaching for cached data, rather than retrieving it multiple times from the API.
+
+```js
+componentDidMount() {
+  if (!this.props.post) {
+    this.props.fetchPosts();
+  }
+}
+```
+
+IMPORTANT to note however, that this means existing posts will not retrieve updates if they've already been fetched once. So if another remotes user were to update a particular post after the first user had retrieved it, the first user would then never retrieve the update.
+
+The above should therefore be implemented with caution, and only used if data cannot or should not be altered remotely.
+
+Lodash onSubmit
+---
+
+```js
+import _ from 'lodash';
+
+const myObj = {a: 1, b: 2, c: 3};
+
+const partOfMyObj = _.omit(myObj, "a")
+
+console.log(partOfMyObj);
+// -> {b: 2, c: 3};
+
+```
+
+Essentially the same as:
+
+```js
+const myObj = {a: 1, b: 2, c: 3}
+
+const partOfMyObj = JSON.parse(JSON.stringify(myObj))
+delete partOfMyObj.a
+
+console.log(partOfMyObj)
+// -> { b: 2, c: 3 }
+```
 
 Reference code in repositories:
 ---
