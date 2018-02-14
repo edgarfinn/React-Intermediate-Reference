@@ -209,7 +209,7 @@ console.log(state)
 
 Redux Form
 ---
-Redux form saves you having to set up event handlers, action creators and input validation.  It is automatically connected to redux-form and passes input values straight to your formReducer reducer. You should always allow **one** Field component for **each** piece of state to be updated. Redux form handles changes in form fields, taking care of event listeners, state changes and input validation.
+Redux form saves you having to set up event handlers, action creators and input validation.  It is automatically connected to redux and passes input values straight to your formReducer reducer. You should always allow **one** Field component for **each** piece of state to be updated. Redux form handles changes in form fields, taking care of event listeners, state changes and input validation.
 
 ```$ npm install redux-form --save```
 
