@@ -235,7 +235,9 @@ const rootReducer = combineReducers({
 On your form component (in this case src/components/posts_new.js):
 
 ```js
-import {Field, reduxForm } from 'redux-form';
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+
 class PostsNew extends Component {
 
   // the 'field' argument allows the Field component to pass in a few event handlers
